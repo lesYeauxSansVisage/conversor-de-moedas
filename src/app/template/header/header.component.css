@@ -1,0 +1,3 @@
+.navbar-toggler:focus-visible {
+  outline: none !important;
+}
