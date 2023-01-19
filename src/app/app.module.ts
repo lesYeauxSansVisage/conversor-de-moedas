@@ -4,10 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './template/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './template/footer/footer.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './pages/home/home.component';
+import { ConversorComponent } from './pages/conversor/conversor.component';
+import { ListagemComponent } from './pages/listagem/listagem.component';
+import { HistoricoComponent } from './pages/historico/historico.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
-  imports: [BrowserModule, BrowserAnimationsModule],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent, ConversorComponent, ListagemComponent, HistoricoComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
