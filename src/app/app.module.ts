@@ -11,9 +11,34 @@ import { ConversorComponent } from './pages/conversor/conversor.component';
 import { ListagemComponent } from './pages/listagem/listagem.component';
 import { HistoricoComponent } from './pages/historico/historico.component';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent, ConversorComponent, ListagemComponent, HistoricoComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    ConversorComponent,
+    ListagemComponent,
+    HistoricoComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSortModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
