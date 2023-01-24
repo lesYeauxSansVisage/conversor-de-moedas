@@ -18,8 +18,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 
-import { MatNativeDateModule } from '@angular/material/core';
-
 @NgModule({
   declarations: [
     AppComponent,
