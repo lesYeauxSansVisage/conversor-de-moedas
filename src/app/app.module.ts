@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './template/header/header.component';
@@ -17,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+import { MoedasFormComponent } from './components/moedas-form/moedas-form.component';
 
 @NgModule({
   declarations: [
@@ -27,16 +30,19 @@ import { MatSortModule } from '@angular/material/sort';
     ConversorComponent,
     ListagemComponent,
     HistoricoComponent,
+    MoedasFormComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
     MatInputModule,
     MatSortModule,
+    MatSelectModule,
     HttpClientModule,
   ],
   providers: [],
