@@ -5,7 +5,7 @@ export interface IHistoricoItem {
     data: string;
   };
   valorDeEntrada: number;
-  valorDeSaída: number;
+  valorDeSaida: number;
   moedaDeOrigem: string;
   moedaDeDestino: string;
   taxa: number;
