@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { ISimbolosData } from '../interfaces/ISimbolosData';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IConversaoData } from '../interfaces/IConversaoData';
 
 @Injectable({
   providedIn: 'root',
@@ -11,18 +13,16 @@ export class ExchangerateService {
 
   constructor(private http: HttpClient) {}
 
-  fetchMoedas(): Observable<any> {
-    return this.http.get(this.symbolsURL);
+  fetchMoedas(): Observable<ISimbolosData> {
+    return this.http.get<ISimbolosData>(this.symbolsURL);
   }
 
-  converterMoeda(moedaOrigem: string, moedaDestino: string, valor: number) {
-    console.log(moedaOrigem, moedaDestino, valor);
-
-    console.log(
-      `https://api.exchangerate.host/convert?amount=${valor}from=${moedaOrigem}&to=${moedaDestino}`
-    );
-
-    return this.http.get(
+  converterMoeda(
+    moedaOrigem: string,
+    moedaDestino: string,
+    valor: number
+  ): Observable<IConversaoData> {
+    return this.http.get<IConversaoData>(
       `https://api.exchangerate.host/convert?from=${moedaOrigem}&to=${moedaDestino}&amount=${valor}`
     );
   }
