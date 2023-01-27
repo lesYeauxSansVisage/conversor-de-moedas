@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MoedasFormComponent } from './components/moedas-form/moedas-form.component';
+import { ResultadosComponent } from './components/resultados/resultados.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MoedasFormComponent } from './components/moedas-form/moedas-form.compon
     ListagemComponent,
     HistoricoComponent,
     MoedasFormComponent,
+    ResultadosComponent,
   ],
   imports: [
     BrowserModule,
