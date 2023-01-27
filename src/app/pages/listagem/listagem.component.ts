@@ -2,11 +2,11 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IData } from 'src/app/interfaces/exchangeServiceData';
+import { ISimbolosData } from 'src/app/interfaces/ISimbolosData';
 
 import { ExchangerateService } from 'src/app/services/exchangerate.service';
 
-import { IMoeda } from 'src/app/interfaces/Moeda';
+import { IMoeda } from 'src/app/interfaces/IMoeda';
 
 @Component({
   selector: 'app-listagem',
@@ -25,8 +25,8 @@ export class ListagemComponent implements OnInit {
   constructor(private exchangeRateService: ExchangerateService) {}
 
   ngOnInit(): void {
-    this.exchangeRateService.fetchMoedas().subscribe((data) => {
-      this.moedas = Object.values((data as IData).symbols);
+    this.exchangeRateService.fetchMoedas().subscribe((data: ISimbolosData) => {
+      this.moedas = Object.values(data.symbols);
 
       this.dataSource = new MatTableDataSource(this.moedas);
 
