@@ -1,9 +1,15 @@
+h2 {
+  font-size: 2rem;
+}
+
 table {
   width: 100%;
+  color: #fff;
 }
 
 .mat-mdc-form-field {
   font-size: 14px;
+  color: #fff;
   width: 100%;
 }
 
