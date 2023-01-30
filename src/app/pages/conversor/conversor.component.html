@@ -1,0 +1,5 @@
+<div class="container pt-4 h-100 d-flex flex-column">
+    <h2 class="text-light text-center">Conversor</h2>
+    <app-moedas-form (emitirConversao)="atualizarConversaoAtual($event)"></app-moedas-form>
+    <app-resultados *ngIf="conversaoAtual" [conversaoAtual]="conversaoAtual" class="align-self-center"></app-resultados>
+</div>
