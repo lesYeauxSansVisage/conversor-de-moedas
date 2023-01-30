@@ -1,0 +1,13 @@
+p {
+  font-size: 1rem;
+}
+
+.card {
+  max-width: 500px;
+}
+
+.result-span {
+  color: rgba(0, 192, 67, 0.953);
+  font-size: 2rem;
+  padding: 0.5rem 0;
+}
