@@ -30,11 +30,6 @@ export class MoedasFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (Number(this.valor) <= 0 || !this.valor) {
-      console.log('Não é possível calcular valores menores que 0');
-      return;
-    }
-
     this.exchangeRateService
       .converterMoeda(this.moedaOrigem, this.moedaDestino, Number(this.valor))
       .subscribe((data: IConversaoData) => {
