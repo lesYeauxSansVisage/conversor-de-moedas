@@ -1,0 +1,51 @@
+<div class="container pt-4 pb-4">
+
+    <h2 class="text-light text-center">Histórico de Conversões</h2>
+
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="bg-dark">
+            <ng-container matColumnDef="valorDeEntrada">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor de Origem </th>
+                <td mat-cell *matCellDef="let row"> {{row.valorDeEntrada}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="moedaDeOrigem">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Moeda De Origem</th>
+                <td mat-cell *matCellDef="let row"> {{row.moedaDeOrigem}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="valorDeSaida">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor De Saída</th>
+                <td mat-cell *matCellDef="let row"> {{row.valorDeSaida}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="moedaDeDestino">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Moeda De Destino</th>
+                <td mat-cell *matCellDef="let row"> {{row.moedaDeDestino}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="taxa">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Taxa</th>
+                <td mat-cell *matCellDef="let row"> {{row.taxa}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="hora">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora</th>
+                <td mat-cell *matCellDef="let row"> {{row.data.horas}} : {{row.data.minutos}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="data">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+                <td mat-cell *matCellDef="let row"> {{row.data.data}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+</div>
