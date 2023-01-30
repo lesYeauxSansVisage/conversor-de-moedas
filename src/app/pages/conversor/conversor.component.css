@@ -1,0 +1,11 @@
+form {
+  max-width: 500px;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.container {
+  gap: 2rem;
+}
