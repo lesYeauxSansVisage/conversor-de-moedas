@@ -1,4 +1,5 @@
 export interface IHistoricoItem {
+  id?: number;
   data: {
     horas: number;
     minutos: number;
@@ -9,4 +10,5 @@ export interface IHistoricoItem {
   moedaDeOrigem: string;
   moedaDeDestino: string;
   taxa: number;
+  valorAlto: boolean;
 }
