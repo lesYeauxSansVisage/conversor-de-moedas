@@ -26,4 +26,8 @@ export class ExchangerateService {
       `https://api.exchangerate.host/convert?from=${moedaOrigem}&to=${moedaDestino}&amount=${valor}`
     );
   }
+
+  verificarValorAlto(valor: number, moeda: string): any {
+    return this.converterMoeda(moeda, 'USD', valor);
+  }
 }
