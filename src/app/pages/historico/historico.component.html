@@ -5,17 +5,17 @@
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort class="bg-dark">
             <ng-container matColumnDef="valorAlto">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor Alto</th>
+                <th mat-header-cell *matHeaderCellDef>Valor Alto</th>
                 <td mat-cell *matCellDef="let row"><i *ngIf="row.valorAlto" class="fa-solid fa-dollar-sign"></i></td>
             </ng-container>
 
             <ng-container matColumnDef="valorDeEntrada">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor de Origem </th>
+                <th mat-header-cell *matHeaderCellDef>Valor de Origem</th>
                 <td mat-cell *matCellDef="let row"> {{row.valorDeEntrada}}</td>
             </ng-container>
 
             <ng-container matColumnDef="moedaDeOrigem">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Moeda De Origem</th>
+                <th mat-header-cell *matHeaderCellDef>Moeda De Origem</th>
                 <td mat-cell *matCellDef="let row"> {{row.moedaDeOrigem}} </td>
             </ng-container>
 
@@ -25,27 +25,27 @@
             </ng-container>
 
             <ng-container matColumnDef="moedaDeDestino">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Moeda De Destino</th>
+                <th mat-header-cell *matHeaderCellDef>Moeda De Destino</th>
                 <td mat-cell *matCellDef="let row"> {{row.moedaDeDestino}} </td>
             </ng-container>
 
             <ng-container matColumnDef="taxa">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Taxa</th>
+                <th mat-header-cell *matHeaderCellDef>Taxa</th>
                 <td mat-cell *matCellDef="let row"> {{row.taxa}} </td>
             </ng-container>
 
             <ng-container matColumnDef="hora">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora</th>
-                <td mat-cell *matCellDef="let row"> {{row.data.horas}} : {{row.data.minutos}}</td>
+                <td mat-cell *matCellDef="let row"> {{row.data | date:'hh:mm:ss a'}}</td>
             </ng-container>
 
             <ng-container matColumnDef="data">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
-                <td mat-cell *matCellDef="let row"> {{row.data.data}} </td>
+                <th mat-header-cell *matHeaderCellDef>Data</th>
+                <td mat-cell *matCellDef="let row">{{row.data | date: 'dd/MM/yyyy'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="excluir">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Excluir </th>
+                <th mat-header-cell *matHeaderCellDef>Excluir</th>
                 <td mat-cell *matCellDef="let row"> <button class="btn btn-secondary" (click)="onClick(row.id)"><i
                             class="fa-solid fa-delete-left"></i></button></td>
             </ng-container>
