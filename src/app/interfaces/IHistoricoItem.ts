@@ -1,10 +1,6 @@
 export interface IHistoricoItem {
   id?: number;
-  data: {
-    horas: number;
-    minutos: number;
-    data: string;
-  };
+  data: Date;
   valorDeEntrada: number;
   valorDeSaida: number;
   moedaDeOrigem: string;
