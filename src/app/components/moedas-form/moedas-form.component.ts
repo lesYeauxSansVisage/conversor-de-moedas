@@ -39,13 +39,12 @@ export class MoedasFormComponent implements OnInit {
       this.exchangeRateService
         .converterMoeda(this.moedaOrigem, this.moedaDestino, +this.valor)
         .subscribe((data: IConversaoData) => {
-          this.formatarDados(data, +this.valor > 10000);
+          this.conversaoAtual = this.historicoService.formatarDados(
+            data,
+            data.query.amount
+          );
 
-          this.historicoService.adicionarItem(this.conversaoAtual);
-
-          this.emitirConversao.emit(this.conversaoAtual);
-
-          this.resetarForm();
+          this.atualizarConversaoAtual();
         });
     } else {
       zip(
@@ -61,45 +60,27 @@ export class MoedasFormComponent implements OnInit {
       )
         .pipe(map(([response1, response2]) => ({ response1, response2 })))
         .subscribe((result) => {
-          this.formatarDados(
+          this.conversaoAtual = this.historicoService.formatarDados(
             result.response1,
-            (result.response2 as IConversaoData).result > 10000
+            (result.response2 as IConversaoData).result
           );
 
-          this.historicoService.adicionarItem(this.conversaoAtual);
-
-          this.emitirConversao.emit(this.conversaoAtual);
-
-          this.resetarForm();
+          this.atualizarConversaoAtual();
         });
     }
-  }
 
-  formatarDados(data: IConversaoData, valorAlto: boolean) {
-    const dataAtual: Date = new Date();
-
-    const itemsLength = this.historicoService.getItems().length;
-
-    const id =
-      itemsLength > 0
-        ? this.historicoService.getItems()[itemsLength - 1].id! + 1
-        : 1;
-
-    this.conversaoAtual = {
-      id: id,
-      data: dataAtual,
-      moedaDeDestino: data.query.to,
-      moedaDeOrigem: data.query.from,
-      valorDeEntrada: data.query.amount,
-      valorDeSaida: data.result,
-      taxa: data.info.rate,
-      valorAlto: valorAlto,
-    };
+    this.resetarForm();
   }
 
   resetarForm() {
     this.valor = '';
     this.moedaDestino = '';
     this.moedaOrigem = '';
+  }
+
+  atualizarConversaoAtual() {
+    this.historicoService.adicionarItem(this.conversaoAtual);
+
+    this.emitirConversao.emit(this.conversaoAtual);
   }
 }
