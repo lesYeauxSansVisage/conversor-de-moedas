@@ -19,8 +19,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
 import { MoedasFormComponent } from './components/moedas-form/moedas-form.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
+import { ConfirmarExclusaoComponent } from './components/confirmar-exclusao/confirmar-exclusao.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { ResultadosComponent } from './components/resultados/resultados.componen
     HistoricoComponent,
     MoedasFormComponent,
     ResultadosComponent,
+    ConfirmarExclusaoComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,8 @@ import { ResultadosComponent } from './components/resultados/resultados.componen
     MatInputModule,
     MatSortModule,
     MatSelectModule,
+    MatDialogModule,
+    MatButtonModule,
     HttpClientModule,
   ],
   providers: [],
