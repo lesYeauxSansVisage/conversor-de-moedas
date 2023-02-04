@@ -9,7 +9,7 @@ import { IConversaoData } from '../interfaces/IConversaoData';
 export class HistoricoService {
   alteracaoHistorico = new EventEmitter<IHistoricoItem[]>();
 
-  items: IHistoricoItem[] = [];
+  private items: IHistoricoItem[] = [];
 
   constructor() {
     if (sessionStorage.getItem('items')) {
