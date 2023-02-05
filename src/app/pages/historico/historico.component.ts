@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HistoricoService } from 'src/app/services/historico.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { IHistoricoItem } from 'src/app/interfaces/IHistoricoItem';
 import { ConfirmarExclusaoComponent } from 'src/app/components/confirmar-exclusao/confirmar-exclusao.component';
@@ -35,7 +36,8 @@ export class HistoricoComponent implements OnInit {
 
   constructor(
     private historicoService: HistoricoService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -76,7 +78,17 @@ export class HistoricoComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
         this.historicoService.excluirItem(id);
+        this.openSnackBar('O item foi excluído permanentemente.');
       }
+    });
+  }
+
+  openSnackBar(message: string) {
+    this._snackbar.open(message, '', {
+      horizontalPosition: 'start',
+      verticalPosition: 'bottom',
+      duration: 3 * 1000,
+      panelClass: ['bg-dark', 'text-light'],
     });
   }
 }
