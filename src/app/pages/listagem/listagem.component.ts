@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ISimbolosData } from 'src/app/interfaces/ISimbolosData';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ExchangerateService } from 'src/app/services/exchangerate.service';
 
@@ -22,17 +23,23 @@ export class ListagemComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private exchangeRateService: ExchangerateService) {}
+  constructor(
+    private exchangeRateService: ExchangerateService,
+    private _snackbar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
-    this.exchangeRateService.fetchMoedas().subscribe((data: ISimbolosData) => {
-      this.moedas = Object.values(data.symbols);
+    this.exchangeRateService.fetchMoedas().subscribe(
+      (data: ISimbolosData) => {
+        this.moedas = Object.values(data.symbols);
 
-      this.dataSource = new MatTableDataSource(this.moedas);
+        this.dataSource = new MatTableDataSource(this.moedas);
 
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      (err) => this.openSnackBar()
+    );
   }
 
   applyFilter(event: Event) {
@@ -42,5 +49,18 @@ export class ListagemComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openSnackBar() {
+    this._snackbar.open(
+      'Ocorreu um erro. Por favor recarregue a página para tentar carregar as moedas novamente.',
+      '',
+      {
+        horizontalPosition: 'start',
+        verticalPosition: 'bottom',
+        duration: 3 * 1000,
+        panelClass: ['bg-dark', 'text-light'],
+      }
+    );
   }
 }
