@@ -2,7 +2,7 @@
 
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-@import "~@angular/material/theming";
+@import "@angular/material/theming";
 
 $conversor-primary: mat-palette($mat-blue-grey);
 $conversor-accent: mat-palette($mat-amber, A200, A100, A400);
