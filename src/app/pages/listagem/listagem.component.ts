@@ -18,7 +18,14 @@ export class ListagemComponent implements OnInit {
   displayedColumns: string[] = ['code', 'description'];
   dataSource: MatTableDataSource<IMoeda>;
 
-  private moedas: IMoeda[] = [];
+  private _moedas: IMoeda[] = [];
+
+  public get moedas(): IMoeda[] {
+    return this._moedas;
+  }
+  public set moedas(value: IMoeda[]) {
+    this._moedas = value;
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
