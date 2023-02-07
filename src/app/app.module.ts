@@ -22,6 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 import { MoedasFormComponent } from './components/moedas-form/moedas-form.component';
 import { ResultadosComponent } from './components/resultados/resultados.component';
@@ -55,6 +57,7 @@ import { ConfirmarExclusaoComponent } from './components/confirmar-exclusao/conf
     MatButtonModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],
