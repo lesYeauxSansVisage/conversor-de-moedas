@@ -61,7 +61,7 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
     this.dataSource.sortingDataAccessor = (item: any, property: any) => {
       switch (property) {
         case 'hora':
-          return item.data;
+          return new Date(item.data);
 
         default:
           return item[property];
