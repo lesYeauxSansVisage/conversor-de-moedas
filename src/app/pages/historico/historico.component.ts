@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,7 +14,7 @@ import { ConfirmarExclusaoComponent } from 'src/app/components/confirmar-exclusa
   templateUrl: './historico.component.html',
   styleUrls: ['./historico.component.css'],
 })
-export class HistoricoComponent implements OnInit {
+export class HistoricoComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     'valorAlto',
     'valorDeEntrada',
@@ -27,7 +27,8 @@ export class HistoricoComponent implements OnInit {
     'excluir',
   ];
 
-  dataSource: MatTableDataSource<IHistoricoItem>;
+  dataSource: MatTableDataSource<IHistoricoItem> =
+    new MatTableDataSource<IHistoricoItem>();
 
   items: IHistoricoItem[] = [];
 
@@ -42,34 +43,30 @@ export class HistoricoComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = this.historicoService.getItems();
-    this.inicializarMatTable();
+    this.dataSource.data = this.items;
 
     this.historicoService.alteracaoHistorico.subscribe(
       (items: IHistoricoItem[]) => {
         this.items = items;
 
-        this.inicializarMatTable();
+        this.dataSource.data = this.items;
       }
     );
   }
 
-  inicializarMatTable() {
-    this.dataSource = new MatTableDataSource(this.items);
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
-    setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+      switch (property) {
+        case 'hora':
+          return item.data;
 
-      this.dataSource.sortingDataAccessor = (item: any, property: any) => {
-        switch (property) {
-          case 'hora':
-            return item.data;
-
-          default:
-            return item[property];
-        }
-      };
-    });
+        default:
+          return item[property];
+      }
+    };
   }
 
   openDialog(id: number) {

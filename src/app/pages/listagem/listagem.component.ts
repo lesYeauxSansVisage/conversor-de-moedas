@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,15 +14,16 @@ import { IMoeda } from 'src/app/interfaces/IMoeda';
   templateUrl: './listagem.component.html',
   styleUrls: ['./listagem.component.css'],
 })
-export class ListagemComponent implements OnInit {
+export class ListagemComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['code', 'description'];
-  dataSource: MatTableDataSource<IMoeda>;
+  dataSource: MatTableDataSource<IMoeda> = new MatTableDataSource<IMoeda>();
 
   private _moedas: IMoeda[] = [];
 
   public get moedas(): IMoeda[] {
     return this._moedas;
   }
+
   public set moedas(value: IMoeda[]) {
     this._moedas = value;
   }
@@ -40,13 +41,15 @@ export class ListagemComponent implements OnInit {
       (data: ISimbolosData) => {
         this.moedas = Object.values(data.symbols);
 
-        this.dataSource = new MatTableDataSource(this.moedas);
-
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.dataSource.data = this.moedas;
       },
       (err) => this.openSnackBar()
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
