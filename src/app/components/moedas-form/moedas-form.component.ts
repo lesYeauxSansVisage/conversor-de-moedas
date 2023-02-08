@@ -41,6 +41,14 @@ export class MoedasFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (
+      !this.moedaOrigem ||
+      !this.moedaDestino ||
+      !this.valor ||
+      +this.valor <= 0
+    )
+      return;
+
     if (this.moedaOrigem == 'USD') {
       this.exchangeRateService
         .converterMoeda(this.moedaOrigem, this.moedaDestino, +this.valor)
