@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { IHistoricoItem } from '../interfaces/IHistoricoItem';
-import { EventEmitter } from '@angular/core';
 import { IConversaoData } from '../interfaces/IConversaoData';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HistoricoService {
-  alteracaoHistorico = new EventEmitter<IHistoricoItem[]>();
+  alteracaoHistorico = new Subject<IHistoricoItem[]>();
 
   private items: IHistoricoItem[] = [];
 
@@ -28,13 +28,13 @@ export class HistoricoService {
 
   adicionarItem(item: IHistoricoItem) {
     this.items.push(item);
-    this.alteracaoHistorico.emit(this.items);
+    this.alteracaoHistorico.next(this.items);
     this.salvarItemsSessao();
   }
 
   excluirItem(id: number) {
     this.items = this.items.filter((item) => item.id !== id);
-    this.alteracaoHistorico.emit(this.items);
+    this.alteracaoHistorico.next(this.items);
     this.salvarItemsSessao();
   }
 
