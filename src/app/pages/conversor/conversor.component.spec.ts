@@ -5,6 +5,15 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { IHistoricoItem } from 'src/app/interfaces/IHistoricoItem';
 import { ConversorComponent } from './conversor.component';
+import { ResultadosComponent } from 'src/app/components/resultados/resultados.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ConversorComponent', () => {
   let component: ConversorComponent;
@@ -23,9 +32,22 @@ describe('ConversorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConversorComponent, MoedasFormComponent],
-      imports: [HttpClientTestingModule, MatSnackBarModule],
-      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [
+        ConversorComponent,
+        MoedasFormComponent,
+        ResultadosComponent,
+      ],
+      imports: [
+        HttpClientTestingModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        MatOptionModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ConversorComponent);

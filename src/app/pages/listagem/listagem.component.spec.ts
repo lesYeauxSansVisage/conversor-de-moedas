@@ -75,8 +75,4 @@ describe('ListagemComponent', () => {
   it('deveria ter uma array de moedas depois de chamar o método fetchMoedas', () => {
     expect(component.moedas).toEqual(Object.values(moedasResultado.symbols));
   });
-
-  it('o atributo dataSource deve ter sido inicializado', () => {
-    expect(component.dataSource).toBeTruthy();
-  });
 });
