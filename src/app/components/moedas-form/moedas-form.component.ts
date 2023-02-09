@@ -75,7 +75,7 @@ export class MoedasFormComponent implements OnInit {
           this.moedaDestino,
           +this.valor
         ),
-        this.exchangeRateService.verificarValorAlto(
+        this.exchangeRateService.verificarValorEmDolar(
           +this.valor,
           this.moedaOrigem
         )
