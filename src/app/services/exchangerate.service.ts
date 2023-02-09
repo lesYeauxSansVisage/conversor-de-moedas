@@ -27,7 +27,7 @@ export class ExchangerateService {
     );
   }
 
-  verificarValorAlto(valor: number, moeda: string): Observable<IConversaoData> {
+  verificarValorEmDolar(valor: number, moeda: string): Observable<IConversaoData> {
     return this.converterMoeda(moeda, 'USD', valor);
   }
 }
