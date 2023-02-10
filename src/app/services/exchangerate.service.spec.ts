@@ -39,7 +39,7 @@ describe('ExchangerateService', () => {
 
   describe('converterMoeda', () => {
     it('deveria retornar um objeto contendo dados da conversão', () => {
-      const userResponse: IConversaoData = {
+      const resposta: IConversaoData = {
         query: {
           from: 'USD',
           to: 'BRL',
@@ -54,14 +54,14 @@ describe('ExchangerateService', () => {
 
       let response: IConversaoData;
 
-      spyOn(service, 'converterMoeda').and.returnValue(of(userResponse));
+      spyOn(service, 'converterMoeda').and.returnValue(of(resposta));
 
       service
         .converterMoeda('USD', 'BRL', 10)
         .subscribe((res: IConversaoData) => {
           response = res;
 
-          expect(response).toEqual(userResponse);
+          expect(response).toEqual(resposta);
         });
     });
   });
