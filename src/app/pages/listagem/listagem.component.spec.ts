@@ -15,8 +15,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ISimbolosData } from 'src/app/interfaces/ISimbolosData';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
-
 describe('ListagemComponent', () => {
   const moedasResultado: ISimbolosData = {
     motd: 'Sua mensagem',
@@ -55,7 +53,6 @@ describe('ListagemComponent', () => {
         MatInputModule,
         BrowserAnimationsModule,
       ],
-      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ListagemComponent);

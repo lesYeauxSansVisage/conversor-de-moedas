@@ -3,11 +3,7 @@ import { ExchangerateService } from 'src/app/services/exchangerate.service';
 import { IHistoricoItem } from 'src/app/interfaces/IHistoricoItem';
 import { IConversaoData } from 'src/app/interfaces/IConversaoData';
 import { HistoricoService } from 'src/app/services/historico.service';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, zip } from 'rxjs';
 
 @Component({

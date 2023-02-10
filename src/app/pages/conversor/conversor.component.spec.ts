@@ -1,4 +1,3 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MoedasFormComponent } from 'src/app/components/moedas-form/moedas-form.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
