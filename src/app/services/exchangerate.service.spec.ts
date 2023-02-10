@@ -1,13 +1,30 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { of } from 'rxjs';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 
 import { ExchangerateService } from './exchangerate.service';
+
 import { ISimbolosData } from '../interfaces/ISimbolosData';
 import { IConversaoData } from '../interfaces/IConversaoData';
 
 describe('ExchangerateService', () => {
   let service: ExchangerateService;
+  let httpMock: HttpTestingController;
+
+  const mockRespostaConversao: IConversaoData = {
+    query: { from: 'USA', to: 'BRL', amount: 10 },
+    info: { rate: 5.574488 },
+    date: '2023-02-10',
+    result: 55.744882,
+  };
+
+  const mockRespostaSimbolos: ISimbolosData = {
+    motd: 'Aqui está sua resposta',
+    sucess: true,
+    symbols: {},
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,54 +32,39 @@ describe('ExchangerateService', () => {
       providers: [ExchangerateService],
     });
     service = TestBed.inject(ExchangerateService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   describe('fetchMoedas', () => {
-    it('deveria retornar uma resposta com um objeto com todas as moedas disponíveis', () => {
-      const resposta: ISimbolosData = {
-        motd: 'Aqui está sua resposta',
-        sucess: true,
-        symbols: {},
-      };
-
-      let response: ISimbolosData;
-
-      spyOn(service, 'fetchMoedas').and.returnValue(of(resposta));
-
-      service.fetchMoedas().subscribe((res: ISimbolosData) => {
-        response = res;
-
-        expect(response).toEqual(resposta);
+    it('deve retornar informações sobre as moedas disponíveis', () => {
+      service.fetchMoedas().subscribe((data) => {
+        expect(data).toEqual(mockRespostaSimbolos);
       });
+
+      const request = httpMock.expectOne(service.symbolsURL);
+      expect(request.request.method).toBe('GET');
+
+      request.flush(mockRespostaSimbolos);
     });
   });
 
   describe('converterMoeda', () => {
-    it('deveria retornar um objeto contendo dados da conversão', () => {
-      const resposta: IConversaoData = {
-        query: {
-          from: 'USD',
-          to: 'BRL',
-          amount: 10,
-        },
-        result: 9.179222,
-        date: '2023-02-03',
-        info: {
-          rate: 0.917922,
-        },
-      };
+    it('deve retornar informações sobre a conversão feita', () => {
+      service.converterMoeda('USD', 'BRL', 10).subscribe((data) => {
+        expect(data).toEqual(mockRespostaConversao);
+      });
 
-      let response: IConversaoData;
+      const request = httpMock.expectOne(
+        'https://api.exchangerate.host/convert?from=USD&to=BRL&amount=10'
+      );
 
-      spyOn(service, 'converterMoeda').and.returnValue(of(resposta));
+      expect(request.request.method).toBe('GET');
 
-      service
-        .converterMoeda('USD', 'BRL', 10)
-        .subscribe((res: IConversaoData) => {
-          response = res;
-
-          expect(response).toEqual(resposta);
-        });
+      request.flush(mockRespostaConversao);
     });
   });
 });
