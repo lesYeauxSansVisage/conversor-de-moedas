@@ -9,7 +9,7 @@ import { IConversaoData } from '../interfaces/IConversaoData';
   providedIn: 'root',
 })
 export class ExchangerateService {
-  private symbolsURL = 'https://api.exchangerate.host/symbols';
+  symbolsURL = 'https://api.exchangerate.host/symbols';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,10 @@ export class ExchangerateService {
     );
   }
 
-  verificarValorEmDolar(valor: number, moeda: string): Observable<IConversaoData> {
+  verificarValorEmDolar(
+    valor: number,
+    moeda: string
+  ): Observable<IConversaoData> {
     return this.converterMoeda(moeda, 'USD', valor);
   }
 }
