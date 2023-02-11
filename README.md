@@ -7,11 +7,11 @@ A página possui uma Página inicial descrevendo o objetivo da aplicação:
 
 Uma página listando as moedas disponíveis em uma tabela, permitindo a busca tanto por código quanto pela descrição:
 
-![Screenshot da página de listagem de moedas](https://i.ibb.co/XyJGFQP/4.png)
+![Screenshot da página de listagem de moedas](https://i.ibb.co/7gy0rfD/4.png)
 
 Uma página onde será feita a conversão e a exibição do resultado da conversão:
 
-![Screenshot da página de conversão](https://i.ibb.co/rvbhKyn/3.png)
+![Screenshot da página de conversão](https://i.ibb.co/8Xzwn8F/3.png)
 
 E uma página onde as conversões feitas serão exibidas em uma tabela, sendo possível ordená-las tanto pela hora de conversão quanto pelo valor de saída. Também é possível excluir valores dessa tabela:
 
