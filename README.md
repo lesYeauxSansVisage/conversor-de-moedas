@@ -15,7 +15,7 @@ Uma página onde será feita a conversão e a exibição do resultado da convers
 
 E uma página onde as conversões feitas serão exibidas em uma tabela, sendo possível ordená-las tanto pela hora de conversão quanto pelo valor de saída. Também é possível excluir valores dessa tabela:
 
-![Screnshot da página do histórico](https://i.ibb.co/QXx9jTh/7.png)
+![Screnshot da página do histórico](https://i.ibb.co/0QzqV61/7.png)
 
 Por fim, usamos Karma/Jasmine para executar alguns testes na nossa aplicação:
 ![Screenshot dos testes](https://i.ibb.co/d6pwH5R/screencapture-localhost-9876-2023-02-11-10-20-05.png)
