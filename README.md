@@ -3,7 +3,7 @@
 Para o Desafio 4, era necessário criar uma página de conversão de moedas usando Angular.
 A página possui uma Página inicial descrevendo o objetivo da aplicação:
 
-![Screenshot da Página Inicial](https://i.ibb.co/ydXKD17/1.png)
+![Screenshot da Página Inicial](https://i.ibb.co/k5xzpfv/1.png)
 
 Uma página listando as moedas disponíveis em uma tabela, permitindo a busca tanto por código quanto pela descrição:
 
