@@ -37,13 +37,7 @@ export class MoedasFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (
-      !this.moedaOrigem ||
-      !this.moedaDestino ||
-      !this.valor ||
-      +this.valor <= 0
-    )
-      return;
+    if (!this.validarValores()) return;
 
     if (this.moedaOrigem == 'USD') {
       this.exchangeRateService
@@ -101,6 +95,12 @@ export class MoedasFormComponent implements OnInit {
     this.valor = '';
     this.moedaDestino = '';
     this.moedaOrigem = '';
+  }
+
+  validarValores() {
+    return (
+      this.moedaOrigem && this.moedaDestino && this.valor && +this.valor > 0
+    );
   }
 
   atualizarConversaoAtual() {

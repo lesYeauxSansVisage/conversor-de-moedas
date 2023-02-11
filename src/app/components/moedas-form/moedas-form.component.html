@@ -24,6 +24,5 @@
         <input matInput type="number" class="w-100 text-light" placeholder="0" [(ngModel)]="valor" name="valor">
     </mat-form-field>
 
-    <button type="submit" class="btn btn-secondary"
-        [disabled]="!moedaOrigem || !moedaDestino || !valor || +valor <= 0">Converter</button>
+    <button type="submit" class="btn btn-secondary" [disabled]="!this.validarValores()">Converter</button>
 </form>
