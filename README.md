@@ -18,4 +18,4 @@ E uma página onde as conversões feitas serão exibidas em uma tabela, sendo po
 ![Screnshot da página do histórico](https://i.ibb.co/0QzqV61/7.png)
 
 Por fim, usamos Karma/Jasmine para executar alguns testes na nossa aplicação:
-![Screenshot dos testes](https://i.ibb.co/d6pwH5R/screencapture-localhost-9876-2023-02-11-10-20-05.png)
+![Screenshot dos testes](https://i.ibb.co/q9g32rv/screencapture-localhost-9876-2023-02-11-10-20-05.png)
