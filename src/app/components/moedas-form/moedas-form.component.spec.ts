@@ -103,7 +103,7 @@ describe('MoedasFormComponent', () => {
       ).not.toHaveBeenCalled();
     });
 
-    it('deveria chamar o método converterMoeda e o método verificarValorEmDolar quando a moeda de origem não for for USD', () => {
+    it('deveria chamar o método converterMoeda e o método verificarValorEmDolar quando a moeda de origem não for USD', () => {
       component.valor = '1';
       component.moedaOrigem = 'EUR';
       component.moedaDestino = 'BRL';
@@ -114,42 +114,50 @@ describe('MoedasFormComponent', () => {
       expect(fakeExchangerateService.verificarValorEmDolar).toHaveBeenCalled();
     });
 
-    it('não deveria chamar nenhum método caso não tenha uma moeda de origem definida', () => {
+    it('não deveria chamar nenhum método do historicoService caso não tenha uma moeda de origem definida', () => {
       component.valor = '1';
 
       component.moedaDestino = 'USA';
 
+      component.onSubmit();
+
       expect(fakeExchangerateService.converterMoeda).not.toHaveBeenCalled();
       expect(
         fakeExchangerateService.verificarValorEmDolar
       ).not.toHaveBeenCalled();
     });
 
-    it('não deveria chamar nenhum método caso não tenha uma moeda de destino definida', () => {
+    it('não deveria chamar nenhum método do historicoService caso não tenha uma moeda de destino definida', () => {
       component.valor = '1';
 
       component.moedaOrigem = 'USA';
 
+      component.onSubmit();
+
       expect(fakeExchangerateService.converterMoeda).not.toHaveBeenCalled();
       expect(
         fakeExchangerateService.verificarValorEmDolar
       ).not.toHaveBeenCalled();
     });
 
-    it('não deveria chamar nenhum método caso não tenha um valor definido', () => {
+    it('não deveria chamar nenhum método do historicoService caso não tenha um valor definido', () => {
       component.moedaOrigem = 'USA';
       component.moedaDestino = 'BRL';
 
+      component.onSubmit();
+
       expect(fakeExchangerateService.converterMoeda).not.toHaveBeenCalled();
       expect(
         fakeExchangerateService.verificarValorEmDolar
       ).not.toHaveBeenCalled();
     });
 
-    it('não deveria chamar nenhum método caso valor esteja igual ou abaixo de 0', () => {
+    it('não deveria chamar nenhum método do historicoService caso valor esteja igual ou abaixo de 0', () => {
       component.moedaOrigem = 'USA';
       component.moedaDestino = 'BRL';
       component.valor = '0';
+
+      component.onSubmit();
 
       expect(fakeExchangerateService.converterMoeda).not.toHaveBeenCalled();
       expect(
