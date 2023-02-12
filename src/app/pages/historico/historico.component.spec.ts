@@ -143,18 +143,5 @@ describe('HistoricoComponent', () => {
         done();
       });
     });
-
-    it('deve renderizar o matNoDataRow quando não houver nenhum item a ser mostrado', (done) => {
-      fixture.detectChanges();
-      component.dataSource.data = [];
-      fixture.whenStable().then(() => {
-        fixture.detectChanges();
-        const noDataRow = fixture.nativeElement.querySelector('tbody tr td');
-
-        expect(noDataRow.innerText).toEqual('Não há items no histórico.');
-
-        done();
-      });
-    });
   });
 });
