@@ -178,10 +178,11 @@ describe('MoedasFormComponent', () => {
       expect(button.nativeElement.disabled).toBeFalsy();
 
       component.moedaOrigem = '';
+
       fixture.detectChanges();
 
       button = fixture.debugElement.query(By.css('button'));
-      expect(button.nativeElement.disabled).toBeTruthy();
+      expect(button.nativeElement.disabled).toBeTrue();
     });
 
     it('deve desativar o botão de conversão caso o valor seja negativo ou 0', () => {
@@ -193,7 +194,7 @@ describe('MoedasFormComponent', () => {
 
       const button = fixture.debugElement.query(By.css('button'));
 
-      expect(button.nativeElement.disabled).toBeTruthy();
+      expect(button.nativeElement.disabled).toBeTrue();
     });
   });
 });
