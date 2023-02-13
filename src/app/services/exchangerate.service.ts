@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ISimbolosData } from '../interfaces/ISimbolosData';
 
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, mergeMap, throwError, of } from 'rxjs';
 import { IConversaoData } from '../interfaces/IConversaoData';
 
 @Injectable({
@@ -22,9 +22,18 @@ export class ExchangerateService {
     moedaDestino: string,
     valor: number
   ): Observable<IConversaoData> {
-    return this.http.get<IConversaoData>(
-      `https://api.exchangerate.host/convert?from=${moedaOrigem}&to=${moedaDestino}&amount=${valor}`
-    );
+    return this.http
+      .get<IConversaoData>(
+        `https://api.exchangerate.host/convert?from=${moedaOrigem}&to=${moedaDestino}&amount=${valor}`
+      )
+      .pipe(
+        mergeMap((resposta) => {
+          if (!resposta.result || !resposta.info.rate) {
+            return throwError(() => 'O resultado ou a taxa são inválidos');
+          }
+          return of(resposta);
+        })
+      );
   }
 
   verificarValorEmDolar(
