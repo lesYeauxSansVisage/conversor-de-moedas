@@ -89,7 +89,7 @@ describe('HistoricoService', () => {
     it('deve retornar um item do histórico com o atributo valorAlto sendo false, caso o valor inserido seja menor ou igual a 10000', () => {
       const item = service.formatarDados(dataConversao, 10000);
 
-      expect(item.valorAlto).toBeFalsy();
+      expect(item.valorAlto).toBeFalse();
     });
 
     it('deve retornar um item do histórico com o atributo valorAlto sendo true, caso o valor inserido seja maior que 10000', () => {
