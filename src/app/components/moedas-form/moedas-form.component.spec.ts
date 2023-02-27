@@ -167,7 +167,7 @@ describe('MoedasFormComponent', () => {
   });
 
   describe('HTML', () => {
-    it('deve acionar o botão de conversão somente se todos os atributos necessários forem válidos', () => {
+    it('deve acionar o botão de conversão somente se todos os dados necessários forem válidos', () => {
       component.moedaOrigem = 'USA';
       component.moedaDestino = 'BRL';
       component.valor = '1';
