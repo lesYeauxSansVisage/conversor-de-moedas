@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,13 +14,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { IHistoricoItem } from 'src/app/interfaces/IHistoricoItem';
 import { ConfirmarExclusaoComponent } from 'src/app/components/confirmar-exclusao/confirmar-exclusao.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-historico',
   templateUrl: './historico.component.html',
   styleUrls: ['./historico.component.css'],
 })
-export class HistoricoComponent implements OnInit, AfterViewInit {
+export class HistoricoComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = [
     'valorAlto',
     'valorDeEntrada',
@@ -32,6 +39,8 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
 
   items: IHistoricoItem[] = [];
 
+  private alteracaoHistoricoSubscription: Subscription;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -45,13 +54,20 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
     this.items = this.historicoService.getItems();
     this.dataSource.data = this.items;
 
-    this.historicoService.alteracaoHistorico.subscribe(
-      (items: IHistoricoItem[]) => {
-        this.items = items;
+    this.alteracaoHistoricoSubscription =
+      this.historicoService.alteracaoHistorico.subscribe(
+        (items: IHistoricoItem[]) => {
+          this.items = items;
 
-        this.dataSource.data = this.items;
-      }
-    );
+          this.dataSource.data = this.items;
+        }
+      );
+  }
+
+  ngOnDestroy(): void {
+    if (this.alteracaoHistoricoSubscription) {
+      this.alteracaoHistoricoSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewInit(): void {
